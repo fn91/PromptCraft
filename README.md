@@ -28,6 +28,16 @@
 
 ---
 
+---
+Futuros añadidos al proyecto
+
+Dark/Light Mode Toggle: Ya tienes un diseño oscuro increíble, añadir un interruptor para volver al modo claro es un reto de lógica de CSS muy divertido.
+
+Exportar a PDF/Doc: Añadir una librería como jsPDF para que el usuario se lleve su prompt listo para imprimir.
+
+Variables Dinámicas: Hacer que si el usuario escribe {{nombre}} en un bloque, aparezca un input especial para rellenar esa variable automáticamente.
+---
+
 ## 🚀 Instalación y Uso
 
 1. **Clona el repositorio:**
