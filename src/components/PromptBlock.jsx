@@ -37,7 +37,7 @@ const PromptBlock = ({ block, handleEdit, handleTypeChange, toggleActive, delete
     <div ref={setNodeRef} style={style} className="block-card">
       <div className="block-header" style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
         
-        {/* MANEJADOR DE ARRASTRE (⠿) */}
+       
         <div 
           {...attributes} 
           {...listeners} 
@@ -58,7 +58,7 @@ const PromptBlock = ({ block, handleEdit, handleTypeChange, toggleActive, delete
         </select>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-          {/* AQUÍ usamos toggleActive */}
+          
           <label style={{ fontSize: '0.8rem', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px' }}>
             <input 
               type="checkbox" 
@@ -67,7 +67,6 @@ const PromptBlock = ({ block, handleEdit, handleTypeChange, toggleActive, delete
             /> Activo
           </label>
           
-          {/* AQUÍ usamos deleteBlock */}
           <button 
             onClick={() => deleteBlock(block.id)}
             style={{ color: '#ef4444', border: 'none', background: 'none', cursor: 'pointer', fontSize: '1.1rem' }}
@@ -89,7 +88,6 @@ const PromptBlock = ({ block, handleEdit, handleTypeChange, toggleActive, delete
         rows="3"
         value={block.content}
         onChange={(e) => handleEdit(block.id, e.target.value)}
-        // TRUCO SENIOR: Evitamos que el arrastre interfiera con la escritura
         onPointerDown={(e) => e.stopPropagation()} 
         placeholder={`Escribe aquí el contenido...`}
       />
