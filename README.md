@@ -60,7 +60,7 @@ PromptCraft Lab prioriza la seguridad local y la privacidad del ingeniero:
 ---
 
 ## 🔗 Enlaces
-- **Demo en Vivo**: [https://lucent-syrniki-98557b.netlify.app/](https://lucent-syrniki-98557b.netlify.app/)
+- **Demo en Vivo**: {((https://promptcraftw.netlify.app/))}
 
 ---
 *Desarrollado con enfoque en la productividad y la seguridad del Ingeniero de Prompts.*
