@@ -1,46 +1,66 @@
-# 🧪 PromptCraft Lab
+# 🧪 PromptCraft Lab - Professional Edition
 
-**PromptCraft Lab** es una herramienta avanzada de ingeniería de prompts diseñada para profesionales de la IA. Permite construir, organizar y probar prompts complejos mediante un sistema de bloques modulares con interfaz arrastrable (Drag & Drop).
+**PromptCraft Lab** es una estación de trabajo avanzada para la ingeniería de prompts, diseñada para profesionales que buscan modularidad, velocidad y seguridad. Construye, organiza y valida prompts complejos mediante un sistema de bloques técnicos con una interfaz premium inspirada en herramientas de alto rendimiento.
 
 ![Licencia](https://img.shields.io/badge/license-MIT-blue.svg)
-![React](https://img.shields.io/badge/frontend-React-61dafb?logo=react)
-![Vite](https://img.shields.io/badge/build-Vite-646cff?logo=vite)
+![React](https://img.shields.io/badge/frontend-React--19-61dafb?logo=react)
+![Vite](https://img.shields.io/badge/build-Vite--7-646cff?logo=vite)
+![pnpm](https://img.shields.io/badge/manager-pnpm-f69220?logo=pnpm)
 
 ---
 
 ## ✨ Características Principales
 
-* **🧩 Arquitectura Modular**: Construye tus prompts usando bloques de Rol, Contexto, Variable e Instrucción.
-* **🖱️ Drag & Drop Pro**: Reordena la estructura de tu prompt en tiempo real gracias a `@dnd-kit`.
-* **💾 Persistencia Local**: Tus datos se guardan automáticamente en el `localStorage` del navegador.
-* **🎨 UI Premium**: Interfaz moderna con modo oscuro, efectos de cristal (Glassmorphism) y animaciones fluidas.
-* **⚡ Simulador de IA**: Flujo de ejecución integrado con estados de carga y previsualización de resultados.
-* **📋 Copiado Rápido**: Botón dedicado para copiar el prompt final al portapapeles con un clic.
+*   **🧩 Arquitectura Modular**: Construye prompts usando bloques especializados de Rol, Contexto, Variable e Instrucción.
+*   **🖱️ Drag & Drop Pro**: Reordena la estructura de tu prompt en tiempo real mediante un sistema de arrastre optimizado.
+*   **🎨 Diseño "Stealth Premium"**: Interfaz profesional en modo oscuro profundo con fondo de rejilla técnica, tipografía *Outfit* y *Fira Code*, y un sistema de diseño basado en tonos pizarra y gris.
+*   **🖥️ Layout Optimizado**: Diseño adaptativo que aprovecha el ancho de pantalla mediante una cuadrícula de bloques y mantiene todo el flujo de trabajo en una sola vista sin scroll excesivo.
+*   **⚡ Simulador de IA**: Flujo de ejecución integrado con estados de carga "neurales" y previsualización de resultados.
 
 ---
 
-## 🛠️ Tecnologías Utilizadas
+## 🛡️ Seguridad y Hardening (Modo Seguro)
 
-* **React 18**: Biblioteca principal para la interfaz.
-* **Dnd-kit**: Framework ligero y accesible para la funcionalidad de arrastrar y soltar.
-* **CSS3 Custom Properties**: Sistema de diseño basado en variables para facilitar el mantenimiento.
-* **Crypto API**: Generación de UUIDs únicos para la gestión de estado inmutable.
+PromptCraft Lab prioriza la seguridad local y la privacidad del ingeniero:
+
+*   **🔒 Autodestrucción por Inactividad**: La mesa de trabajo se limpia automáticamente tras **10 minutos de inactividad**, eliminando los datos tanto de la UI como del `localStorage`.
+*   **📏 Control de Entradas**: Límite estricto de **50,000 caracteres por bloque** con contador visual dinámico para prevenir bloqueos de memoria.
+*   **💾 Persistencia Local**: Los datos nunca salen de tu navegador. Se guardan localmente para que puedas retomar tu trabajo al instante.
+*   **🚫 Protección contra Errores**: Sistema de confirmación para el borrado total de la mesa.
 
 ---
 
----
-Futuros añadidos al proyecto
+## 🛠️ Stack Tecnológico
 
-Dark/Light Mode Toggle: Ya tienes un diseño oscuro increíble, añadir un interruptor para volver al modo claro es un reto de lógica de CSS muy divertido.
-
-Exportar a PDF/Doc: Añadir una librería como jsPDF para que el usuario se lleve su prompt listo para imprimir.
+*   **React 19**: Biblioteca principal para la interfaz de usuario de última generación.
+*   **Vite 7**: Servidor de desarrollo y constructor ultra-rápido.
+*   **pnpm**: Gestor de paquetes eficiente y determinista.
+*   **Dnd-kit**: Framework accesible para la funcionalidad de arrastrar y soltar.
+*   **CSS3 Custom Properties**: Sistema de diseño basado en tokens para una consistencia visual perfecta.
 
 ---
 
 ## 🚀 Instalación y Uso
 
-1. **Clona el repositorio:**
-   ```bash
-   git clone [https://github.com/tu-usuario/promptcraft-lab.git](https://github.com/tu-usuario/promptcraft-lab.git)
-LinkEnDirecto : https://lucent-syrniki-98557b.netlify.app/
-   
+1.  **Clona el repositorio:**
+    ```bash
+    git clone https://github.com/tu-usuario/promptcraft-lab.git
+    ```
+
+2.  **Instala las dependencias con pnpm:**
+    ```bash
+    pnpm install
+    ```
+
+3.  **Inicia el servidor de desarrollo:**
+    ```bash
+    pnpm dev
+    ```
+
+---
+
+## 🔗 Enlaces
+- **Demo en Vivo**: [https://lucent-syrniki-98557b.netlify.app/](https://lucent-syrniki-98557b.netlify.app/)
+
+---
+*Desarrollado con enfoque en la productividad y la seguridad del Ingeniero de Prompts.*

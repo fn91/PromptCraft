@@ -1,105 +1,239 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Fira+Code:wght@400;500&display=swap');
+
 :root {
-  --bg-deep: #0f172a;
-  --bg-card: rgba(30, 41, 59, 0.7);
-  --primary: #db270f; /* Violeta Neón */
-  --secondary: #06b6d4; /* Cian */
-  --accent-role: #3b82f6;
-  --accent-var: #f59e0b;
-  --accent-inst: #10b981;
+  /* Color Palette - Stealth Engineer Edition */
+  --bg-main: #020617;
+  --bg-grid: rgba(255, 255, 255, 0.02);
+  
+  --surface-card: rgba(15, 23, 42, 0.6);
+  --surface-stealth: #1e293b;
+  --surface-stealth-hover: #334155;
+  
+  --primary: #94a3b8; /* Slate/Grey Primary */
+  --primary-accent: #f8fafc;
+  
+  --color-role: #64748b;
+  --color-context: #475569;
+  --color-variable: #334155;
+  --color-instruction: #1e293b;
+  
   --text-main: #f8fafc;
-  --text-dim: #94a3b8;
-  --border: rgba(255, 255, 255, 0.1);
+  --text-dim: #cbd5e1;
+  --text-muted: #64748b;
+  
+  --border-subtle: rgba(255, 255, 255, 0.05);
+  --border-active: rgba(255, 255, 255, 0.1);
+  
+  --radius-xl: 12px;
+  --radius-lg: 8px;
+  --radius-md: 6px;
+  
+  --shadow-stealth: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+  --transition-fast: all 0.2s ease;
+  --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
 }
 
 body {
-  background-color: var(--bg-deep);
-  /* Degradado de fondo orbital */
+  background-color: var(--bg-main);
   background-image: 
-    radial-gradient(at 0% 0%, rgba(139, 92, 246, 0.15) 0px, transparent 50%),
-    radial-gradient(at 100% 100%, rgba(6, 182, 212, 0.15) 0px, transparent 50%);
+    linear-gradient(var(--bg-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--bg-grid) 1px, transparent 1px);
+  background-size: 30px 30px;
   color: var(--text-main);
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-family: 'Outfit', sans-serif;
   margin: 0;
-  min-height: 100vh;
+  height: 100vh;
+  overflow: hidden; /* Prevent body scroll if possible, let container handle it */
 }
 
 .container {
-  max-width: 900px;
+  max-width: 1100px;
+  height: 100vh;
   margin: 0 auto;
-  padding: 40px 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto; /* Allow scrolling inside the container */
+}
+
+/* --- Header Compact --- */
+header {
+  margin-bottom: 15px !important;
+  text-align: center;
 }
 
 h1 {
-  font-size: 3rem;
-  font-weight: 800;
-  letter-spacing: -1px;
-  background: linear-gradient(to right, #fff, var(--text-dim));
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: 8px;
+  font-size: 1.8rem !important;
+  font-weight: 800 !important;
+  letter-spacing: -1px !important;
+  margin-bottom: 0 !important;
+  text-transform: uppercase;
 }
 
-/* Estilo Glassmorphism para los bloques */
+h1 span {
+  color: var(--text-muted) !important;
+  background: none !important;
+  -webkit-text-fill-color: var(--text-muted) !important;
+}
+
+header p {
+  display: none; /* Hide to save space */
+}
+
+/* --- Template Chips (Sober Style) --- */
+.template-bar {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 15px !important;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btn-template {
+  background: var(--surface-stealth) !important;
+  border: 1px solid var(--border-subtle) !important;
+  color: var(--text-dim) !important;
+  padding: 4px 12px !important;
+  border-radius: var(--radius-md) !important;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.75rem !important;
+  transition: var(--transition-fast) !important;
+}
+
+.btn-template:hover {
+  background: var(--surface-stealth-hover) !important;
+  color: white !important;
+}
+
+/* --- Layout Controls --- */
+.blocks-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 12px;
+  margin-bottom: 15px;
+}
+
+/* --- Block Cards (Compact) --- */
 .block-card {
-  background: var(--bg-card);
-  backdrop-filter: blur(10px);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 20px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: var(--surface-card) !important;
+  border: 1px solid var(--border-subtle) !important;
+  border-radius: var(--radius-lg) !important;
+  padding: 12px !important;
+  margin-bottom: 0 !important;
+  transition: var(--transition-fast) !important;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .block-card:hover {
-  border-color: rgba(8, 44, 68, 0.4);
-  box-shadow: 0 0 30px rgba(139, 92, 246, 0.1);
-  transform: translateY(-2px);
+  border-color: var(--border-active) !important;
+  background: rgba(30, 41, 59, 0.4) !important;
 }
 
-/* Inputs Modernos */
-select, textarea {
-  background: rgba(15, 23, 42, 0.5);
-  border: 1px solid var(--border);
-  color: var(--text-main);
-  border-radius: 12px;
-  padding: 12px;
-  transition: border 0.3s;
+.block-header {
+  margin-bottom: 0 !important;
 }
 
-textarea:focus {
-  border-color: var(--primary);
-  box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.2);
+select {
+  background: #0f172a !important;
+  border: 1px solid var(--border-subtle) !important;
+  color: var(--text-muted) !important;
+  font-size: 0.7rem !important;
+  padding: 2px 8px !important;
 }
 
-/* Botón Neón */
+textarea {
+  background: rgba(2, 6, 23, 0.4) !important;
+  border: 1px solid var(--border-subtle) !important;
+  color: var(--text-main) !important;
+  font-family: 'Fira Code', monospace !important;
+  font-size: 0.85rem !important;
+  padding: 8px !important;
+  border-radius: var(--radius-md) !important;
+  min-height: 60px !important; /* Compact */
+}
+
+/* --- Stealth Buttons --- */
 .btn-add {
-  background: linear-gradient(135deg, var(--primary), #cc7809);
-  color: white;
-  border: none;
-  padding: 14px 28px;
-  border-radius: 14px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  cursor: pointer;
-  box-shadow: 0 4px 15px rgba(194, 155, 96, 0.4);
+  background: var(--surface-stealth) !important;
+  color: var(--text-dim) !important;
+  border: 1px solid var(--border-subtle) !important;
+  padding: 10px 20px !important;
+  font-weight: 600 !important;
+  font-size: 0.85rem !important;
+  letter-spacing: 1px !important;
+  border-radius: var(--radius-md) !important;
+  transition: var(--transition-fast) !important;
+  box-shadow: none !important;
 }
 
-.btn-add:hover {
-  transform: scale(1.02);
-  filter: brightness(1.1);
+.btn-add:hover:not(:disabled) {
+  background: var(--surface-stealth-hover) !important;
+  color: white !important;
+  border-color: var(--primary) !important;
+  transform: none !important;
 }
 
-/* Skeleton Loading (Para la IA) */
+/* Specific Execute Button Style (width 100%) */
+.btn-add[style*="width: 100%"] {
+  background: #1e293b !important;
+  border-color: var(--border-active) !important;
+  margin: 15px 0 !important;
+  padding: 15px !important;
+}
+
+.btn-add[style*="width: 100%"]:hover {
+  background: #334155 !important;
+}
+
+/* Limpiar Button */
+button[onClick*="confirm"]:not(.btn-add) {
+  background: transparent !important;
+  border: 1px solid rgba(239, 68, 68, 0.2) !important;
+  color: rgba(239, 68, 68, 0.6) !important;
+  font-size: 0.7rem !important;
+}
+
+button[onClick*="confirm"]:not(.btn-add):hover {
+  background: rgba(239, 68, 68, 0.1) !important;
+  color: #ef4444 !important;
+}
+
+/* --- Results Section (Side-by-Side Compact) --- */
+.output-section {
+  padding: 15px !important;
+  border-radius: var(--radius-lg) !important;
+  font-size: 0.8rem;
+}
+
+pre {
+  padding: 10px !important;
+  font-size: 0.8rem !important;
+}
+
+/* Animations */
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 .skeleton-line {
-  height: 12px;
-  background: linear-gradient(90deg, #1e293b 25%, #334155 50%, #1e293b 75%);
-  background-size: 200% 100%;
-  animation: shimmer 1.5s infinite;
-  border-radius: 6px;
-  margin-bottom: 10px;
+  background: #1e293b !important;
+  height: 8px !important;
 }
 
-@keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
+/* Hide some elements on small screens or to fit */
+@media (max-height: 800px) {
+  h1 { font-size: 1.4rem !important; }
+  .container { padding: 10px 20px; }
 }

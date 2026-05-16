@@ -16,18 +16,36 @@ const PromptEditor = () => {
 
   const [aiResponse, setAiResponse] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [lastActivity, setLastActivity] = useState(Date.now());
+
+  const INACTIVITY_LIMIT = 10 * 60 * 1000; // 10 minutos
+
+  useEffect(() => {
+    localStorage.setItem('promptcraft_data', JSON.stringify(blocks));
+    setLastActivity(Date.now()); // Reset activity on block changes
+  }, [blocks]);
+
+  // Temporizador de Autodestrucción por Inactividad
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const now = Date.now();
+      if (now - lastActivity > INACTIVITY_LIMIT && blocks.length > 0) {
+        setBlocks([]);
+        setAiResponse("⚠️ MESA LIMPIADA POR INACTIVIDAD (MODO SEGURO)");
+      }
+    }, 10000); // Revisar cada 10 segundos
+
+    return () => clearInterval(interval);
+  }, [lastActivity, blocks]);
 
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 8 } }),
     useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates })
   );
 
-  useEffect(() => {
-    localStorage.setItem('promptcraft_data', JSON.stringify(blocks));
-  }, [blocks]);
-
   const executePrompt = async () => {
     if (blocks.length === 0) return;
+    setLastActivity(Date.now());
     setIsLoading(true);
     setAiResponse("");
 
@@ -39,6 +57,7 @@ const PromptEditor = () => {
   };
 
   const applyTemplate = (templateBlocks) => {
+    setLastActivity(Date.now());
     const sanitized = templateBlocks.map(b => ({ ...b, id: crypto.randomUUID(), isActive: true }));
     setBlocks(prev => [...prev, ...sanitized]);
   };
@@ -46,6 +65,7 @@ const PromptEditor = () => {
   const handleDragEnd = (event) => {
     const { active, over } = event;
     if (active.id !== over?.id) {
+      setLastActivity(Date.now());
       setBlocks((items) => {
         const oldIndex = items.findIndex((i) => i.id === active.id);
         const newIndex = items.findIndex((i) => i.id === over.id);
@@ -88,14 +108,14 @@ const PromptEditor = () => {
       </div>
 
       <div style={{ display: 'flex', gap: '15px', marginBottom: '25px' }}>
-        <button className="btn-add" onClick={() => setBlocks([...blocks, { id: crypto.randomUUID(), type: "context", content: "", isActive: true }])} style={{ flex: 1 }}>
+        <button className="btn-add" onClick={() => { setLastActivity(Date.now()); setBlocks([...blocks, { id: crypto.randomUUID(), type: "context", content: "", isActive: true }]); }} style={{ flex: 1 }}>
           + Añadir Bloque
         </button>
         <button 
           onClick={() => { if(window.confirm("¿Vaciar mesa de trabajo?")) setBlocks([]); }}
           style={{ background: 'rgba(239, 68, 68, 0.1)', border: '1px solid rgba(239, 68, 68, 0.2)', color: '#ef4444', borderRadius: '12px', padding: '0 20px', cursor: 'pointer' }}
         >
-          Limpiar
+          Limpiar Mesa
         </button>
       </div>
 
@@ -106,10 +126,10 @@ const PromptEditor = () => {
               <PromptBlock 
                 key={block.id} 
                 block={block} 
-                handleEdit={(id, val) => setBlocks(blocks.map(b => b.id === id ? {...b, content: val} : b))}
-                handleTypeChange={(id, type) => setBlocks(blocks.map(b => b.id === id ? {...b, type} : b))}
-                toggleActive={(id) => setBlocks(blocks.map(b => b.id === id ? {...b, isActive: !b.isActive} : b))}
-                deleteBlock={(id) => setBlocks(blocks.filter(b => b.id !== id))}
+                handleEdit={(id, val) => { setLastActivity(Date.now()); setBlocks(blocks.map(b => b.id === id ? {...b, content: val} : b)); }}
+                handleTypeChange={(id, type) => { setLastActivity(Date.now()); setBlocks(blocks.map(b => b.id === id ? {...b, type} : b)); }}
+                toggleActive={(id) => { setLastActivity(Date.now()); setBlocks(blocks.map(b => b.id === id ? {...b, isActive: !b.isActive} : b)); }}
+                deleteBlock={(id) => { setLastActivity(Date.now()); setBlocks(blocks.filter(b => b.id !== id)); }}
               />
             ))}
           </div>
@@ -132,7 +152,7 @@ const PromptEditor = () => {
         </button>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: aiResponse ? '1fr 1fr' : '1fr', gap: '20px' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: aiResponse ? '1fr 1fr' : '1fr', gap: '20px', marginBottom: '40px' }}>
         {/* Resultado del Texto */}
         <section className="output-section" style={{ border: '1px solid rgba(255,255,255,0.05)' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '15px' }}>
@@ -157,6 +177,21 @@ const PromptEditor = () => {
           </section>
         )}
       </div>
+
+      <footer style={{ 
+        borderTop: '1px solid rgba(255,255,255,0.05)', 
+        paddingTop: '20px', 
+        textAlign: 'center',
+        opacity: 0.6
+      }}>
+        <div style={{ marginBottom: '10px', fontSize: '0.75rem', color: '#10b981' }}>
+          🔒 MODO SEGURO ACTIVO: Autodestrucción en 10m de inactividad
+        </div>
+        <p style={{ fontSize: '0.8rem', color: '#94a3b8' }}>
+          🛡️ <b>Aviso de Seguridad:</b> Los datos se guardan localmente en tu navegador (localStorage). 
+          Evita introducir contraseñas, claves de API o información personal sensible.
+        </p>
+      </footer>
     </div>
   );
 };

@@ -2,8 +2,10 @@
   "name": "promptcraft",
   "private": true,
   "version": "0.0.0",
+  "packageManager": "pnpm@11.1.2",
   "type": "module",
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",

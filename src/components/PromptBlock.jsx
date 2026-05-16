@@ -86,11 +86,20 @@ const PromptBlock = ({ block, handleEdit, handleTypeChange, toggleActive, delete
           outline: 'none'
         }}
         rows="3"
+        maxLength={50000}
         value={block.content}
         onChange={(e) => handleEdit(block.id, e.target.value)}
         onPointerDown={(e) => e.stopPropagation()} 
         placeholder={`Escribe aquí el contenido...`}
       />
+      <div style={{ 
+        textAlign: 'right', 
+        fontSize: '0.7rem', 
+        color: block.content.length > 45000 ? '#ef4444' : '#94a3b8',
+        marginTop: '5px' 
+      }}>
+        {block.content.length.toLocaleString()} / 50,000
+      </div>
     </div>
   );
 };
